@@ -49,9 +49,7 @@ The target source variable was commented out in the Makefile. There was no way f
 ## PROBLEM 2: PROGRAM RAN WITHOUT ANY ERRORS BUT COMPUTATION TIME IS TOO SMALL
 
 merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_1K
-=============================================
  Running AoSoA benchmark for N=1000
-=============================================
 → Building for V=2 ...
 → Running test with N=1000, V=2
 → Building for V=4 ...
@@ -76,9 +74,7 @@ The program compiled successfully but when we check the CSV file we can see the 
 ## PROBLEM 3: AOSOA UNDECLARED 
 
 merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_1K
-=============================================
  Running AoSoA benchmark for N=1000
-=============================================
 → Building for V=2 ...
 aosoa_measurement.cpp: In function ‘void run_aos_aoa_kernel(long int)’:
 aosoa_measurement.cpp:27:17: error: ‘AoSoA’ was not declared in this scope
@@ -144,9 +140,7 @@ We successfully allocated the AoSoA array, but we never deallocated it. This lea
 
 ## RESULTS AFTER FIXING EVERYTHING 
 merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_1K
-=============================================
  Running AoSoA benchmark for N=1000
-=============================================
 → Building for V=2 ...
 → Running test with N=1000, V=2
 → Building for V=4 ...
@@ -165,9 +159,7 @@ merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_1K
 → Running test with N=1000, V=256
 Results saved to results_N1000.csv
 merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_10K
-=============================================
  Running AoSoA benchmark for N=10000
-=============================================
 → Building for V=2 ...
 → Running test with N=10000, V=2
 → Building for V=4 ...
@@ -186,9 +178,7 @@ merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_10K
 → Running test with N=10000, V=256
 Results saved to results_N10000.csv
 merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_100K
-=============================================
  Running AoSoA benchmark for N=100000
-=============================================
 → Building for V=2 ...
 → Running test with N=100000, V=2
 → Building for V=4 ...
@@ -207,9 +197,7 @@ merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_100K
 → Running test with N=100000, V=256
 Results saved to results_N100000.csv
 merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_1M
-=============================================
  Running AoSoA benchmark for N=1000000
-=============================================
 → Building for V=2 ...
 → Running test with N=1000000, V=2
 → Building for V=4 ...
@@ -228,9 +216,7 @@ merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_1M
 → Running test with N=1000000, V=256
 Results saved to results_N1000000.csv
 merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_10M
-=============================================
  Running AoSoA benchmark for N=10000000
-=============================================
 → Building for V=2 ...
 → Running test with N=10000000, V=2
 → Building for V=4 ...
