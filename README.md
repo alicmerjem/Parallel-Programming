@@ -1,9 +1,7 @@
 # Parallel-Programming
 ## PROBLEM 1: MISSING SOURCE FILE IN THE MAKEFILE
 merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ make test_1K
-=============================================
  Running AoSoA benchmark for N=1000
-=============================================
 → Building for V=2 ...
 g++: fatal error: no input files
 compilation terminated.
