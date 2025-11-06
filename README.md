@@ -11,11 +11,13 @@ timestep_opt1.c:9:9: optimized: loop vectorized using 32 byte vectors
 timestep_opt1.c:11:7: optimized: loop vectorized using 32 byte vectors
 timestep_opt1.c:9:9: optimized: loop vectorized using 32 byte vectors
 
-merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming$ sudo likwid-perfctr -C 0 -f -g MEM_DP ./stream_triad_opt1
+--------------------------------------------------------------------------------
 CPU name:       Intel(R) Core(TM) i7-8665U CPU @ 1.90GHz
 CPU type:       Intel Kabylake processor
 CPU clock:      0.00 GHz
+--------------------------------------------------------------------------------
 Minimum dt is 0.016964
+--------------------------------------------------------------------------------
 Group 1: MEM_DP
 +------------------------------------------+---------+------------+
 |                   Event                  | Counter | HWThread 0 |
