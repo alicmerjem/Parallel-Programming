@@ -50,6 +50,34 @@ Timing is init 0.022584 flush 97.819152 stencil 91.056015 total 196.367140
 ![Terminal output after running all code examples](stenciloneandtwo.png)
 ![Terminal output after running all code examples](stencilthree.png)
 
+## Implementation difference and results 
+### Comparison of the three implementations
+**Stencil 2 - base implementation**
+- Standard loop level OpenMP
+- Uses `#pragma omp parallel for` on each loop
+- Overhead is present de to high thread management costs 
+- Implicit barriers used after every parallel loop
+
+**Stencil 4 - first optimization**
+- Beginning of high level OpenMP
+- Uses only `#pragma omp parallel` 
+- Reduced the overhead and added `nowait` to flush the loop
+- We are mixing implicit barriers and reduced sync 
+
+**Stencil 6 - advances optimization**
+- Full high level OpenMP
+- Uses manual control
+- Manual loop partitioning, explicit barriers
+- Work sharking is eliminated
+- Explicit barriers are used only when needed 
+
+### Results explanation 
+- Stencil 4 achieved the best overall performance as a result of reducing overhead 
+- Flush loop shows consistent improvement 
+. We can conclude that all the strategies we used were effective
+- Stencil 6 has the best flush time and good stencil time. However, the explicit barrier overhead increased the total time slightly 
+- The 1.6% improvement shows that a significant amount of time and resources were saved
+
 ## Analysis
 
 ### How many threads your CPU used to execute the code?
