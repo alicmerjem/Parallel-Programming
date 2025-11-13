@@ -1,0 +1,44 @@
+=== Stencil Performance Comparison ===
+Number of CPU threads: 8
+
+1. Base Implementation (stencil_opt2.c):
+Running with 8 thread(s)
+Iter 0
+Iter 1000
+Iter 2000
+Iter 3000
+Iter 4000
+Iter 5000
+Iter 6000
+Iter 7000
+Iter 8000
+Iter 9000
+Timing is init 0.020380 flush 110.091770 stencil 88.158292 total 198.276237
+
+2. First Optimization (stencil_opt4.c):
+Running with 8 thread(s)
+Iter 0
+Iter 1000
+Iter 2000
+Iter 3000
+Iter 4000
+Iter 5000
+Iter 6000
+Iter 7000
+Iter 8000
+Iter 9000
+Timing is init 0.034836 flush 98.813026 stencil 96.215585 total 195.096036
+
+3. Advanced Optimization (stencil_opt6.c):
+Running with 8 thread(s)
+Iter 0
+Iter 1000
+Iter 2000
+Iter 3000
+Iter 4000
+Iter 5000
+Iter 6000
+Iter 7000
+Iter 8000
+Iter 9000
+Timing is init 0.022584 flush 97.819152 stencil 91.056015 total 196.367140
