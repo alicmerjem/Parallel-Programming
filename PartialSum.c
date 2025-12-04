@@ -46,12 +46,17 @@ int main(int argc, char *argv[])
 
     // You need to use one of the collective communication calls to provide nsize from all processes to
     // each process and store it in "nsizes" array declared above. Look at MPI_Allgather!
-    MPI_Allgather(&nsize, 1, MPI_INT, nsizes, 1, MPI_INT, comm);
+    MPI_Gather(&nsize, 1, MPI_INT, nsizes, 1, MPI_INT, 0, comm);
 
-    offsets[0] = 0;
-    for (int i = 1; i < nprocs; i++) {
-        offsets[i] = offsets[i - 1] + nsizes[i - 1];
+    if (rank == 0) {
+        offsets[0] = 0;
+        for (int i = 1; i < nprocs; i++) {
+            offsets[i] = offsets[i - 1] + nsizes[i - 1];
+        }
     }
+
+    MPI_Bcast(nsizes, nprocs, MPI_INT, 0, comm);
+    MPI_Bcast(offsets, nprocs, MPI_INT, 0, comm);
 
     // Allocate local array on each process
     // Your code here..
