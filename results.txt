@@ -1,0 +1,50 @@
+OPENACC
+
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/openacc$ ./StreamTriad
+Average runtime for stream triad loop is 0.058615 secs
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/openacc$ ./StreamTriad_par1
+Average runtime for stream triad loop is 0.065404 secs
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/openacc$ ./StreamTriad_par2
+Average runtime for stream triad loop is 0.053513 secs
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/openacc$ ./StreamTriad_par3
+Average runtime for stream triad loop is 0.054909 secs
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/openacc$ ./StreamTriad_par4
+Average runtime for stream triad loop is 0.069922 secs
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/openacc$ ./StreamTriad_kern1
+Average runtime for stream triad loop is 0.058050 secs
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/openacc$ ./StreamTriad_kern2
+Average runtime for stream triad loop is 0.064091 secs
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/openacc$ ./StreamTriad_kern3
+Average runtime for stream triad loop is 0.061672 secs
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/openacc$ 
+
+
+OMP
+
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/omp$ ./StreamTriad
+Average runtime for stream triad loop is 0.065013 msecs
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/omp$ ./StreamTriad_par1
+Segmentation fault (core dumped)
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/omp$ ./StreamTriad_par2
+Average runtime for stream triad loop is 0.050115 secs
+
+
+OCL
+
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/ocl$ ./StreamTriad
+Invalid value in clCreateContext call
+
+ERROR: clCreateContext -- Invalid value in clCreateContext at line 211 in file ezcl_lite.c
+
+  =============== Backtrace ===============
+   ./StreamTriad(+0x3409) [0x560d5a75a409]    
+   ./StreamTriad(+0x2717) [0x560d5a759717]    
+   /lib/x86_64-linux-gnu/libc.so.6(+0x2a1ca) [0x7ed156e2a1ca]    
+   /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x8b) [0x7ed156e2a28b]    
+  =============== Backtrace ===============
+
+
+CUDA
+
+merjem@LAPTOP-HJN4TB2I:~/Parallel-Programming/cuda$ ./StreamTriad
+./StreamTriad: error while loading shared libraries: libcudart.so.11.0: cannot open shared object file: No such file or directory
