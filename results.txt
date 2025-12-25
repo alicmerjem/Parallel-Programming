@@ -1,0 +1,201 @@
+EXAMPLE 01
+2 PROCESSES
+mpirun -n 2 ./version1
+=== VERSION 1: SERIAL I/O ===
+Processes: 2
+
+Total records: 15000000
+Records per process: 7500000
+
+TIMING RESULTS:
+  Read time:    27.0499 seconds
+  Compute time: 0.0694 seconds
+  Write time:   1.1006 seconds
+  Total time:   29.0382 seconds
+
+PERFORMANCE:
+  Data written: 343.32 MB
+  Write bandwidth: 311.93 MB/s
+
+4 PROCESSES
+mpirun -n 4 ./version1
+=== VERSION 1: SERIAL I/O ===
+Processes: 4
+
+Total records: 15000000
+Records per process: 3750000
+
+TIMING RESULTS:
+  Read time:    41.9609 seconds
+  Compute time: 0.0686 seconds
+  Write time:   1.3788 seconds
+  Total time:   44.5010 seconds
+
+PERFORMANCE:
+  Data written: 343.32 MB
+  Write bandwidth: 249.00 MB/s
+
+EXAMPLE 02
+2 PROCESSES
+mpirun -n 2 ./version2
+=== VERSION 2: MPI-IO INDEPENDENT ===
+Processes: 2
+
+Total records: 15000000
+Records per process: 7500000
+
+TIMING RESULTS:
+  Read time:    12.6801 seconds
+  Compute time: 0.0505 seconds
+  Write time:   1.2260 seconds
+  Total time:   14.2436 seconds
+
+PERFORMANCE:
+  Data written: 343.32 MB
+  Write bandwidth: 280.03 MB/s
+
+4 PROCESSES
+mpirun -n 4 ./version2
+=== VERSION 2: MPI-IO INDEPENDENT ===
+Processes: 4
+
+Total records: 15000000
+Records per process: 3750000
+
+TIMING RESULTS:
+  Read time:    7.7460 seconds
+  Compute time: 0.0293 seconds
+  Write time:   0.8974 seconds
+  Total time:   9.1829 seconds
+
+PERFORMANCE:
+  Data written: 343.32 MB
+  Write bandwidth: 382.56 MB/s
+
+EXAMPLE 03
+2 PROCESSES
+mpirun -n 2 ./version3
+=== VERSION 3: MPI-IO COLLECTIVE + HINTS ===
+Processes: 2
+Total records: 15000000
+Records per process: 7500000
+Hints applied: collective_buffering=true, aggregators=2
+
+TIMING RESULTS:
+  Read time:      12.6483 seconds
+  Compute time:   0.0758 seconds
+  Write time:     1.4925 seconds (max)
+                  0.8261 seconds (min)
+                  1.1593 seconds (avg)
+  Write variance: 0.6664 seconds
+  Total time:     14.3647 seconds
+
+PERFORMANCE:
+  Data written: 343.32 MB
+  Write bandwidth: 230.03 MB/s
+
+4 PROCESSES
+mpirun -n 4 ./version3
+=== VERSION 3: MPI-IO COLLECTIVE + HINTS ===
+Processes: 4
+Total records: 15000000
+Records per process: 3750000
+Hints applied: collective_buffering=true, aggregators=4
+
+TIMING RESULTS:
+  Read time:      9.2181 seconds
+  Compute time:   0.0325 seconds
+  Write time:     1.6454 seconds (max)
+                  0.5590 seconds (min)
+                  1.0891 seconds (avg)
+  Write variance: 1.0864 seconds
+  Total time:     10.9608 seconds
+
+PERFORMANCE:
+  Data written: 343.32 MB
+  Write bandwidth: 208.66 MB/s
+
+EXAMPLE 04
+2 PROCESSES
+mpirun -n 2 ./version4
+=== VERSION 4: MPI-IO WITH DATATYPES (HALO CELLS) ===
+Processes: 2
+
+Grid configuration:
+  Local grid per process: 20x20
+  Halo width: 2
+  Memory per process: 24x24 (with halos)
+  Global grid: 20x40
+  Process layout: 1x2
+
+Initialized grid with halos
+  Sample process 0 corner (with halos):
+     -999.0  -999.0  -999.0  -999.0  -999.0 
+     -999.0  -999.0  -999.0  -999.0  -999.0 
+     -999.0  -999.0     0.0     1.0     2.0 
+     -999.0  -999.0   100.0   101.0   102.0 
+     -999.0  -999.0   200.0   201.0   202.0 
+
+TIMING RESULTS:
+  Initialization: 0.0000 seconds
+  Write time:     0.0067 seconds
+  Bandwidth:      0.91 MB/s
+
+MEMORY EFFICIENCY:
+  Memory per process: 0.00 MB (includes halos)
+  Data written: 0.01 MB (halos stripped)
+  Memory overhead: 44.0% (halo cells)
+
+KEY FEATURES:
+  + MPI_Type_create_subarray defines data layout
+  + Memspace: describes data in memory (with halos)
+  + Filespace: describes data in file (without halos)
+  + Automatic extraction of real data
+  + No manual copying needed
+  + Typical pattern in scientific computing
+
+Verifying output file...
+  First row of file (should have NO halo values):
+    0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+
+4 PROCESSES
+mpirun -n 4 ./version4
+=== VERSION 4: MPI-IO WITH DATATYPES (HALO CELLS) ===
+Processes: 4
+
+Grid configuration:
+  Local grid per process: 20x20
+  Halo width: 2
+  Memory per process: 24x24 (with halos)
+  Global grid: 20x80
+  Process layout: 1x4
+
+Initialized grid with halos
+  Sample process 0 corner (with halos):
+     -999.0  -999.0  -999.0  -999.0  -999.0 
+     -999.0  -999.0  -999.0  -999.0  -999.0 
+     -999.0  -999.0     0.0     1.0     2.0 
+     -999.0  -999.0   100.0   101.0   102.0 
+     -999.0  -999.0   200.0   201.0   202.0 
+
+TIMING RESULTS:
+  Initialization: 0.0000 seconds
+  Write time:     0.0055 seconds
+  Bandwidth:      2.22 MB/s
+
+MEMORY EFFICIENCY:
+  Memory per process: 0.00 MB (includes halos)
+  Data written: 0.01 MB (halos stripped)
+  Memory overhead: 44.0% (halo cells)
+
+KEY FEATURES:
+  + MPI_Type_create_subarray defines data layout
+  + Memspace: describes data in memory (with halos)
+  + Filespace: describes data in file (without halos)
+  + Automatic extraction of real data
+  + No manual copying needed
+  + Typical pattern in scientific computing
+
+Verifying output file...
+  First row of file (should have NO halo values):
+    0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
